@@ -43,11 +43,10 @@ loop:
 	andi COUNTER, 0b00000001 ; check odd or even
 	breq set_even			 ; if it even zero flag is set
 set_odd:
-	ldi TEMP, 0b0001
+	ldi TEMP, 0001
 	rjmp display
 set_even:
-	ldi TEMP, 0b0011
+	ldi TEMP, 0011
 display:
 	out PORTD, TEMP
-	clr COUNTER
 	rjmp main

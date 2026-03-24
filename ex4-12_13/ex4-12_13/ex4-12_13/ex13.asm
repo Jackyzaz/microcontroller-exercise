@@ -29,25 +29,16 @@ main:
 	in VARS1, PINB
 	in VARS2, PIND
 	andi VARS2, 0b10000000
-	
+	cpi  VARS2, 0b10000000
+	breq count_target
+	com  VARS1
+count_target:
 	ldi  LOOP_COUNT, 8 
 loop:	
 	rol  VARS1
 	adc  COUNTER, ZERO
 	dec  LOOP_COUNT
 	brne loop			; dec already change zero flag check
-	; lastly add a bit from sw2
-	ror  VARS2
-	adc  COUNTER, ZERO
-	
-	andi COUNTER, 0b00000001 ; check odd or even
-	breq set_even			 ; if it even zero flag is set
-set_odd:
-	ldi TEMP, 0b0001
-	rjmp display
-set_even:
-	ldi TEMP, 0b0011
-display:
-	out PORTD, TEMP
+	out PORTD, COUNTER	
 	clr COUNTER
 	rjmp main
