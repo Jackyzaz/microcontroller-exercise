@@ -1,2 +1,1 @@
-"# firespot-detection" 
-"# microcontroller-exercise" 
+# microcontroller-exercise
